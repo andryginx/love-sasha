@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплименты для тебя 💖</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<header>
+    <a href="sasha.html" class="profile profile-left">
+        <img src="image/-2.jpg" alt="Саня">
+        <span>Саня</span>
+    </a>
+    <a href="andrew.html" class="profile profile-right">
+        <span>Андрюха</span>
+        <img src="image/0.jpg" alt="Андрюха">
+    </a>
+</header>
+<body>
+
+    <div class="container">
+        <h1>Комплименты для тебя 💖</h1>
+        <p id="compliment">Нажми на кнопку и получи комплимент!</p>
+        <button onclick="showCompliment()">Получить комплимент</button>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const compliments = [
+            "Ты невероятно красивая!",
+            "Твоя улыбка освещает мой день!",
+            "Ты — самое лучшее, что случалось со мной!",
+            "Ты умная, добрая и невероятно талантливая!",
+            "Мне так повезло, что ты у меня есть!",
+            "Ты делаешь этот мир лучше просто своим присутствием!",
+            "Ты вдохновляешь меня каждый день!",
+            "Ты невероятно очаровательна!",
+            "Я не могу перестать думать о тебе!",
+            "Ты мой самый лучший подарок!"
+        ];
+
+        function showCompliment() {
+            const complimentText = document.getElementById("compliment");
+            const randomIndex = Math.floor(Math.random() * compliments.length);
+
+            // Убираем класс "show", чтобы запустить анимацию заново
+            complimentText.classList.remove("show");
+
+            // Небольшая задержка перед сменой текста, чтобы анимация работала плавно
+            setTimeout(() => {
+                complimentText.textContent = compliments[randomIndex];
+                complimentText.classList.add("show");
+            }, 300);
+
+            // Отправка уведомления (если разрешено)
+            if (Notification.permission === "granted") {
+                new Notification("💖 Комплимент для тебя!", {
+                    body: compliments[randomIndex],
+                    icon: "https://cdn-icons-png.flaticon.com/512/2583/2583100.png"
+                });
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission();
+            }
+
+            // Включаем музыку (если она еще не играет)
+            const music = document.getElementById("bg-music");
+            if (music.paused) {
+                music.play().catch(error => console.log("Автозапуск звука заблокирован браузером"));
+            }
+        }
+    </script>
+
+</body>
+</html>

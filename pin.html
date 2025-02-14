@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Введите PIN-код</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/pin.js" defer></script>
+</head>
+<header>
+    <a href="sasha.html" class="profile profile-left">
+        <img src="image/-2.jpg" alt="Саня">
+        <span>Саня</span>
+    </a>
+    <a href="andrew.html" class="profile profile-right">
+        <span>Андрюха</span>
+        <img src="image/0.jpg" alt="Андрюха">
+    </a>
+</header>
+<body>
+    <div class="container">
+        <h1>Введите PIN-код</h1>
+        <div class="pin-images">
+            <img src="image/30.jpg" alt="Фото1">
+            <img src="image/31.jpg" alt="Фото2">
+        </div>
+        <input type="password" id="pinInput" maxlength="4">
+        <button onclick="checkPin()">Войти</button>
+        <p id="error" class="error"></p>
+    </div>
+</body>
+</html>
