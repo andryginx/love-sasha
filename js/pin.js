@@ -10,6 +10,6 @@ function checkPin() {
 
 document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("access") !== "granted") {
-        window.location.href = "pin.html";
+        window.location.href = "index.html";
     }
 });
